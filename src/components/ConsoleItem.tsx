@@ -1,6 +1,6 @@
 import type { ConsoleItemProps } from "@/types";
 import type { JSX } from "react";
-import ReactJson from 'react-json-view'
+import ReactJson from '@microlink/react-json-view'
 
 // Console Output Item Component
 export function ConsoleItem({ log, theme, editorBg }: ConsoleItemProps): JSX.Element {
@@ -42,7 +42,7 @@ export function ConsoleItem({ log, theme, editorBg }: ConsoleItemProps): JSX.Ele
                     ? 'text-red-500'
                     : log.type === 'warn'
                         ? 'text-yellow-500'
-                        : 'text-gray-500'
+                        : `text-gray-${theme === 'vs-light' ? '500' : '100'}`
                     }`}>{part} </span>;
             }
 

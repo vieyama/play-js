@@ -1,5 +1,5 @@
 import { type JSX, useState, useRef, useEffect } from 'react';
-import { Play, Trash2, Copy, Check, Package } from 'lucide-react';
+import { Play, Trash2, Copy, Check } from 'lucide-react';
 import { ConsoleItem } from './components/ConsoleItem';
 import type { Dependency, LogEntry, LogType } from './types';
 import { DependenciesModal } from './components/DependenciesModal';
@@ -66,7 +66,7 @@ export default function JavaScriptPlayground(): JSX.Element {
 
   const monaco = useMonaco()
 
-  function handleEditorValidation(markers: any[]) {
+  function handleEditorValidation(markers: editor.IMarker[]) {
     // model markers
     markers.forEach((marker) => console.log("onValidate:", marker.message));
   }
@@ -84,7 +84,7 @@ export default function JavaScriptPlayground(): JSX.Element {
       if (typeof arg === 'object' && arg !== null) {
         try {
           return JSON.stringify(arg);
-        } catch (e) {
+        } catch {
           return String(arg);
         }
       }
@@ -192,7 +192,7 @@ export default function JavaScriptPlayground(): JSX.Element {
       await navigator.clipboard.writeText(code);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
+    } catch {
       const textArea = document.createElement('textarea');
       textArea.value = code;
       textArea.style.position = 'fixed';
@@ -230,6 +230,7 @@ export default function JavaScriptPlayground(): JSX.Element {
             </h1>
             <p className={`${theme === 'vs-light' ? 'text-gray-600' : 'text-gray-400'} text-sm mt-1`}>Write and execute JavaScript code in real-time</p>
           </div>
+          {/*  
           <button
             onClick={() => setIsModalOpen(true)}
             className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg flex items-center gap-2 text-sm font-medium transition-all hover:shadow-lg"
@@ -237,6 +238,7 @@ export default function JavaScriptPlayground(): JSX.Element {
             <Package size={18} />
             Dependencies {dependencies.length > 0 && `(${dependencies.length})`}
           </button>
+          */}
         </div>
       </div>
 

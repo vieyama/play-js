@@ -294,7 +294,7 @@ export default function JavaScriptPlayground(): JSX.Element {
               </div>
             </div>
             <Editor
-              height="90vh"
+              height="75vh"
               onMount={handleEditorMount}
               defaultLanguage="javascript"
               defaultValue={code}
